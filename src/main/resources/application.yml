@@ -1,9 +1,9 @@
-# Druid ≈‰÷√–≈œ¢
+# Druid ÈÖçÁΩÆ
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    # MySQL ≈‰÷√
-    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&useSSL=true&serverTimezone=UTC
+    # MySQL ÈÖçÁΩÆ
+    url: jdbc:mysql://localhost:3306/exclusive_plug?characterEncoding=utf8&useSSL=true&serverTimezone=UTC
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
@@ -22,16 +22,32 @@ spring:
     filters: stat,wall,log4j
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 
-## MyBatis ≈‰÷√
-#mybatis.mapper-locations=classpath:mapper/.*xml
-#mybatis.type-aliases-package=com.qg.exclusiveplug.model
-#mybatis.configuration.map-underscore-to-camel-case=true
+  # Redis ÈÖçÁΩÆ
+  redis:
+    database: 0
+    host: 119.29.253.167
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 300
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    timeout: 0
+
+# MyBatis ÈÖçÁΩÆ
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.qg.exclusiveplug.model
+  configuration.map-underscore-to-camel-case: true
 
 
-#Netty ≈‰÷√
+#Netty ÈÖçÁΩÆ
 netty:
   tcp-port: 8090
   boss-count: 1
   worker-count: 10
   keep-alive: true
   backlog: 100
+

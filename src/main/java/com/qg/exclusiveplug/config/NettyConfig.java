@@ -1,10 +1,13 @@
 package com.qg.exclusiveplug.config;
 
+import com.qg.exclusiveplug.handlers.StringProtocolHandler;
 import com.qg.exclusiveplug.handlers.TcpHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +45,7 @@ public class NettyConfig {
     private int backLog;
 
     @Autowired
-    private TcpHandler tcpHandler;
+    private StringProtocolHandler tcpHandler;
 
     @Bean(name = "serverBootstrap")
     public ServerBootstrap bootstrap(){
@@ -81,5 +84,15 @@ public class NettyConfig {
         options.put(ChannelOption.SO_KEEPALIVE, keepAlive);
         options.put(ChannelOption.SO_BACKLOG, backLog);
         return options;
+    }
+
+    @Bean(name = "stringEncoder")
+    public StringEncoder stringEncoder(){
+        return new StringEncoder();
+    }
+
+    @Bean(name = "stringDecoder")
+    public StringDecoder stringDecoder(){
+        return new StringDecoder();
     }
 }

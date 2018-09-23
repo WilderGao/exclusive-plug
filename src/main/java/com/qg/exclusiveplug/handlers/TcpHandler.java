@@ -22,6 +22,7 @@ public class TcpHandler extends SimpleChannelInboundHandler<String> {
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, String s)
             throws Exception {
+        log.info("客户端请求，Id为： "+channelHandlerContext.channel().id());
         log.info("收到客户端发来的消息: "+s);
     }
 
