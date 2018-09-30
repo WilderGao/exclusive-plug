@@ -5,7 +5,8 @@
 <mapper namespace="com.qg.exclusiveplug.dao.DeviceMapper">
     <insert id="saveDevices" parameterType="com.qg.exclusiveplug.model.Device">
         INSERT INTO device
-        (name, current, voltage, power, date)
+        (name, current, voltage, power, date, power_factor,
+        frequency, cumulative_power, index_num)
         VALUES
         <foreach collection="list" index="index" item="item" separator=",">
             (
@@ -13,7 +14,11 @@
               #{item.current},
               #{item.voltage},
               #{item.power},
-              #{item.date}
+              #{item.date},
+              #{item.powerFactor},
+              #{item.frequency},
+              #{item.cumulativePower},
+              #{item.index}
             )
         </foreach>
     </insert>

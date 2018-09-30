@@ -14,11 +14,15 @@ import java.util.Date;
  * description
  */
 public class DateUtil {
-    private static String PATTERN = "yyyy-MM-dd hh:MM:ss";
+    private static String PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     public static String currentTime(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN);
         return formatter.format(LocalDateTime.now());
+    }
+
+    public static void main(String[] args) {
+        System.out.println(currentTime());
     }
 
 }
